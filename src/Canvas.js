@@ -16,8 +16,9 @@ class Canvas extends React.Component{
 
 	conponentDidMount(){
 		window.addEventListener("resize", this.updateDimensions);
-
-			}
+		const canvas = this.props.ref;
+		const context = canvas.getContext('2d');
+	}
 	
 	updateDimensions(){
 		this.setState({
@@ -27,13 +28,11 @@ class Canvas extends React.Component{
 	}
 
 	dot(){
-		const canvas = this.props.ref;
-		const context = canvas.getContext('2d');
-
-		context.beginPath();
-		context.arc(100,100,10,0,Math.PI*2)
-		context.stroke();
+			context.beginPath();
+			context.arc(100,100,10,0,Math.PI*2)
+			context.stroke();
 	}
+	
 
 	render(){
 		return(
