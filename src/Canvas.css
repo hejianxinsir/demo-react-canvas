@@ -1,5 +1,7 @@
 /* This is Canvas.css */
-#canvas{
-	border: 3px solid red;
+canvas{
+	background: pink;
 }
+
+
 

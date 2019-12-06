@@ -6,7 +6,7 @@ import Canvas from './Canvas.js';
 function App() {
   return (
     <div className="App">
-			<Canvas value="hello"/>
+			<Canvas value="canvas"/>
 		</div>
   );
 }

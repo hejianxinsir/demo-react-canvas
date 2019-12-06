@@ -1,23 +1,53 @@
 // This is Canvas.js
 import React, {Constructor} from 'react';
-import './CanvasJs.js';
 import './Canvas.css';
 
 class Canvas extends React.Component{
 	constructor(props){
 		super(props)
+		this.myRef = React.createRef();
 		this.state = {
-			id: "canvas",
+			canvasWidth: window.innerWidth,
+			canvasHeight: window.innerHeight 
 		}
+		this.updateDimensions = this.updateDimensions.bind(this);
+		this.dot = this.dot.bind(this);
+	}
+
+	conponentDidMount(){
+		window.addEventListener("resize", this.updateDimensions);
+
+			}
+	
+	updateDimensions(){
+		this.setState({
+			canvasWidth: window.innerWidth, 
+			canvasHeight: window.innerHeight,
+		})
+	}
+
+	dot(){
+		const canvas = this.props.ref;
+		const context = canvas.getContext('2d');
+
+		context.beginPath();
+		context.arc(100,100,10,0,Math.PI*2)
+		context.stroke();
 	}
 
 	render(){
 		return(
-			<div>
-				<canvas id={this.state.id}></canvas>	
-			</div>
+				<canvas ref={this.myRef.current}
+						width={this.state.canvasWidth}
+						height={this.state.canvasHeight}
+						onClick = {this.dot}
+				></canvas>	
 		)
 	}
+
+	/*componentWillUnmount(){
+		window.removeEventListener("resize", this.updateDimensions);
+	}*/
 }
 
 export default Canvas;
