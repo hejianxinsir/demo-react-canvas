@@ -18,7 +18,6 @@ class Canvas extends React.Component{
 
 	conponentDidMount(){
 		window.addEventListener("resize", this.updateDimensions);
-		this.dot();
 	}
 	
 	updateDimensions(){
