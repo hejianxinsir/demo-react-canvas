@@ -94,6 +94,7 @@ class Canvas extends React.Component{
 	/*componentWillUnmount(){
 		window.removeEventListener("resize", this.updateDimensions);
 	}*/
+	
 }
 
 export default Canvas;
