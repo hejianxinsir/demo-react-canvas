@@ -1,0 +1,6 @@
+
+.eraser {
+	border: 1px solid grey;
+	padding: 4px 7px;
+	border-radius: 2px;
+}

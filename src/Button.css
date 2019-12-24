@@ -1,0 +1,10 @@
+
+.eraser {
+	border: 1px solid brown;
+	padding: 4px 7px;
+	border-radius: 3px;
+
+	position: fixed;
+	top: 10px;
+	left: 14px;
+}

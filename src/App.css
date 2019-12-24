@@ -1,1 +1,12 @@
 
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.App {
+	border: 1px solid brown;
+	position: fixed;
+	top: 0;
+	left: 0;
+}

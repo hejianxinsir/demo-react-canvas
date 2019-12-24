@@ -8,8 +8,7 @@ class Canvas extends React.Component{
 		this.state = {
 			canvasWidth: window.innerWidth,
 			canvasHeight: window.innerHeight,
-			downDotX: undefined, downDotY: undefined ,
-			moveDotX: undefined, moveDotY: undefined ,
+			downDotX: undefined, downDotY: undefined,
 			using: false,
 			eraserEnabled: false
 		}
@@ -28,7 +27,6 @@ class Canvas extends React.Component{
 	}
 
 	dot(aaa){
-		console.log('down');
 		const context = this.refs.canvas.getContext('2d');
 		let {clientX,clientY} = aaa;
 		this.setState({
@@ -37,37 +35,39 @@ class Canvas extends React.Component{
 			using: true
 		})
 		if(this.state.using){
-			let previousDot = {x:clientX, y: clientY};
-			context.beginPath();
-			context.arc(clientX,clientY,1,0,Math.PI*2);
-			context.fill();
+				context.beginPath();
+				context.arc(clientX,clientY,1,0,Math.PI*2);
+				context.fill();
 		}
 	}
 
 	drawLine(aaa){
-		console.log('move');
 		const context = this.refs.canvas.getContext('2d');
 		let x = aaa.clientX;
 		let y = aaa.clientY;
 		if(this.state.eraserEnabled){
-			context.clearRect(x,y,30,30);
+			if(this.state.using){
+				context.clearRect(x,y,30,30);
+			}
 		}else{
 			if(this.state.using){
 				this.setState({
 					moveDotX: x,
 					moveDotY: y
 				})
-				let presentDot = {x: x, y: y};
 				let previousDot = {x: this.state.downDotX, y: this.state.downDotY};
+				let presentDot = {x: x, y: y};
 				
 				context.beginPath();
 				context.moveTo(this.state.downDotX, this.state.downDotY);
-				context.lineTo(this.state.moveDotX, this.state.moveDotY);
+				context.lineTo(x,y);
 				context.stroke();
 				context.closePath();
-				
-				// 怎么把当前的点的坐标，赋给上一个点的坐标？？？
-				// ???
+
+				this.setState((state)=>({
+					downDotX: x,
+					downDotY: y
+				}))
 			}
 		}
 	}
@@ -80,13 +80,13 @@ class Canvas extends React.Component{
 
 	render(){
 		return(
-				<canvas ref="canvas"
-						width={this.state.canvasWidth}
-						height={this.state.canvasHeight}
-						onMouseDown={this.dot.bind(this)}
-						onMouseMove={this.drawLine.bind(this)}
-						onMouseUp={this.stop.bind(this)}
-				></canvas>	
+					<canvas ref="canvas"
+							width={this.state.canvasWidth}
+							height={this.state.canvasHeight}
+							onMouseDown={this.dot.bind(this)}
+							onMouseMove={this.drawLine.bind(this)}
+							onMouseUp={this.stop.bind(this)}
+					></canvas>
 		)
 	}
 
