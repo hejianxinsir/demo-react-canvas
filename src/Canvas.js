@@ -1,6 +1,7 @@
 
 import React, {Constructor} from 'react';
 import './Canvas.css';
+import Button from './Button.js';
 
 class Canvas extends React.Component{
 	constructor(props){
@@ -55,8 +56,6 @@ class Canvas extends React.Component{
 					moveDotX: x,
 					moveDotY: y
 				})
-				let previousDot = {x: this.state.downDotX, y: this.state.downDotY};
-				let presentDot = {x: x, y: y};
 				
 				context.beginPath();
 				context.moveTo(this.state.downDotX, this.state.downDotY);
@@ -78,8 +77,14 @@ class Canvas extends React.Component{
 		})	
 	}
 
+	xxx(aaa){
+		console.log(aaa);
+		console.log('我是xxx函数');
+	}
+
 	render(){
 		return(
+				<div>
 					<canvas ref="canvas"
 							width={this.state.canvasWidth}
 							height={this.state.canvasHeight}
@@ -87,6 +92,8 @@ class Canvas extends React.Component{
 							onMouseMove={this.drawLine.bind(this)}
 							onMouseUp={this.stop.bind(this)}
 					></canvas>
+					<Button value="eraser" onClick={this.xxx.bind(this)} />
+				</div>
 		)
 	}
 

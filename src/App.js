@@ -13,10 +13,9 @@ class App extends React.Component {
 	 return (
     <div className="App">
 			<Canvas value="canvas" />
-			<Button value="橡皮擦" />
 		</div>
  	 );
 	}
- }
+}
 
 export default App;
